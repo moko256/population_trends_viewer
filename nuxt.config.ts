@@ -14,4 +14,9 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
+
+  // https://nuxt.com/docs/guide/concepts/typescript
+  typescript: {
+    typeCheck: true,
+  },
 })
