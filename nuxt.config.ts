@@ -6,17 +6,10 @@ export default defineNuxtConfig({
     resasApiKey: process.env.RESAS_API_KEY,
   },
 
-  modules: ['@nuxt/eslint'],
-
-  // https://eslint.nuxt.com/packages/module
-  eslint: {
-    config: {
-      stylistic: true,
-    },
-  },
+  modules: ["@nuxt/eslint"],
 
   // https://nuxt.com/docs/guide/concepts/typescript
   typescript: {
     typeCheck: true,
   },
-})
+});
