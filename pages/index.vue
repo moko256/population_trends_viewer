@@ -23,15 +23,17 @@
 
     <!-- Populations -->
     <div>
-      <div v-if="isPopulationsLoading">
-        <p>Loading populations...</p>
+      <div v-if="canPopulationShow">
+        <div v-if="isPopulationsLoading">
+          <p>Loading populations...</p>
+        </div>
+        <div v-if="isPopulationsError">
+          <p>Error when loading populations.</p>
+          <button @click="loadPopulations">Retry</button>
+        </div>
+        <PopulationsGraph :populations="populations" />
+        <p>{{ JSON.stringify(populations) }}</p>
       </div>
-      <div v-if="isPopulationsError">
-        <p>Error when loading populations.</p>
-        <button @click="loadPopulations">Retry</button>
-      </div>
-      <PopulationsGraph :populations="populations" />
-      <p>{{ JSON.stringify(populations) }}</p>
     </div>
   </div>
 </template>
@@ -48,6 +50,7 @@ const {
   isPrefecturesError,
   isPrefectureSelected,
   populations,
+  canPopulationShow,
   isPopulationsLoading,
   isPopulationsError,
 } = storeToRefs(store);

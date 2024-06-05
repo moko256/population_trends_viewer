@@ -23,6 +23,7 @@ export const useAppState = defineStore("counter", () => {
   );
 
   const populations = ref<PopulationCompositions>([]);
+  const canPopulationShow = ref(false);
   const isPopulationsLoading = ref(true);
   const isPopulationsError = ref(false);
 
@@ -45,13 +46,25 @@ export const useAppState = defineStore("counter", () => {
     isPopulationsLoading.value = true;
     isPopulationsError.value = false;
 
-    try {
-      populations.value = await populationsRepo.getPopulationsByPrefecture(
-        selectedPrefectureCodes.value,
-      );
-    } catch (e) {
-      console.log(e);
-      isPopulationsError.value = true;
+    // Load populations if the number of selected prefecture is in [1, 11].
+    // It is a restriction from API.
+    if (
+      1 <= selectedPrefectureCodes.value.length &&
+      selectedPrefectureCodes.value.length <= 11
+    ) {
+      canPopulationShow.value = true;
+
+      try {
+        populations.value = await populationsRepo.getPopulationsByPrefecture(
+          selectedPrefectureCodes.value,
+        );
+      } catch (e) {
+        console.log(e);
+        isPopulationsError.value = true;
+      }
+    } else {
+      canPopulationShow.value = false;
+      populations.value = [];
     }
 
     isPopulationsLoading.value = false;
@@ -70,6 +83,7 @@ export const useAppState = defineStore("counter", () => {
     isPrefectureSelected,
     selectedPrefectureCodes,
     populations,
+    canPopulationShow,
     isPopulationsLoading,
     isPopulationsError,
     loadPrefectures,
