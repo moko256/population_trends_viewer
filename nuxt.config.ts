@@ -12,4 +12,10 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
   },
+
+  app: {
+    head: {
+      viewport: "width=device-width,height=device-height,initial-scale=1",
+    },
+  },
 });

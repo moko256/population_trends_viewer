@@ -88,6 +88,7 @@ const chartData = computed<ChartData<"line">>(() => {
 
 const chartOptions: ChartOptions<"line"> = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       align: "start",

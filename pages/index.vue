@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="container">
     <!-- Prefectures -->
-    <div>
+    <div id="top">
       <div v-if="isPrefecturesLoading">
         <p>Loading prefectures...</p>
       </div>
@@ -22,16 +22,18 @@
     </div>
 
     <!-- Populations -->
-    <div>
-      <div v-if="canPopulationShow">
-        <div v-if="isPopulationsLoading">
+    <div id="bottom">
+      <div v-if="canPopulationShow" class="graph-container">
+        <div v-if="isPopulationsLoading" class="graph-container">
           <p>Loading populations...</p>
         </div>
-        <div v-if="isPopulationsError">
+        <div v-if="isPopulationsError" class="graph-container">
           <p>Error when loading populations.</p>
           <button @click="loadPopulations">Retry</button>
         </div>
-        <PopulationsGraph :populations="populations" />
+        <div class="graph-container">
+          <PopulationsGraph :populations="populations" />
+        </div>
         <p>{{ JSON.stringify(populations) }}</p>
       </div>
     </div>
@@ -67,4 +69,31 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
 }
 </script>
 
-<style />
+<style>
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+#top {
+  overflow: scroll;
+  flex: 1;
+  height: 100%;
+}
+
+#bottom {
+  display: flex;
+  position: relative;
+  flex: 1;
+  height: 100%;
+}
+
+.graph-container {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+</style>
