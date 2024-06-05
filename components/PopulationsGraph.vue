@@ -94,5 +94,27 @@ const chartOptions: ChartOptions<"line"> = {
       position: "right",
     },
   },
+  scales: {
+    x: {
+      title: {
+        display: true,
+        align: "end",
+        font: {
+          size: 14,
+        },
+        text: "年度",
+      },
+    },
+    y: {
+      title: {
+        display: true,
+        align: "end",
+        font: {
+          size: 14,
+        },
+        text: "人口数",
+      },
+    },
+  },
 };
 </script>
