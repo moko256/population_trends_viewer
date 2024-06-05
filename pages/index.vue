@@ -30,6 +30,7 @@
         <p>Error when loading populations.</p>
         <button @click="loadPopulations">Retry</button>
       </div>
+      <PopulationsGraph :populations="populations" />
       <p>{{ JSON.stringify(populations) }}</p>
     </div>
   </div>

@@ -30,6 +30,23 @@ export class MockPopulationsRepo extends PopulationsRepo {
           },
         ],
       },
+      {
+        label: `総人口2`,
+        data: [
+          {
+            year: 1990,
+            value: 3000,
+          },
+          {
+            year: 2010,
+            value: 5000,
+          },
+          {
+            year: 2020,
+            value: 8000,
+          },
+        ],
+      },
     ];
   }
 }
