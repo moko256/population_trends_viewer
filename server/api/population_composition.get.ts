@@ -28,12 +28,15 @@ export default defineEventHandler(async (event) => {
     result.result.data.map<PopulationCompositionData>((value) => {
       return {
         label: value.label,
-        data: value.data.map<PopulationValue>((item) => {
-          return {
-            year: item.year,
-            value: item.value,
-          };
-        }),
+        data: value.data
+          // Include only <=2020 (boundaryYear)
+          .filter((v) => v.year <= result.result.boundaryYear)
+          .map<PopulationValue>((item) => {
+            return {
+              year: item.year,
+              value: item.value,
+            };
+          }),
       };
     });
 
