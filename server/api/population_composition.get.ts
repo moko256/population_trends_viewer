@@ -17,6 +17,12 @@ export default defineEventHandler(async (event) => {
     {
       headers: resasHeaders(resasApiKey),
       query: {
+        // For example: 1,2,3
+        //
+        // prefCode: 1
+        // cityCode: "-" (all cities)
+        // addArea: "2_,3_" (all cities)
+
         prefCode: firstPref,
         cityCode: "-",
         addArea: restPref.map((v) => `${v}_`).join(","),
