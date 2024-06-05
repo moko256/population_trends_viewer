@@ -5,7 +5,7 @@ import type {
   PopulationCompositions,
   PopulationCompositionData,
   PopulationValue,
-} from "~/common_domain/entity/population";
+} from "~/domain_common/entity/population";
 
 // Query: prefCode (number)
 // Returns `PopulationCompositions`.

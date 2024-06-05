@@ -1,4 +1,4 @@
-import type { Prefectures } from "~/common_domain/entity/prefecture";
+import type { Prefectures } from "~/domain_common/entity/prefecture";
 
 export abstract class PrefecturesRepo {
   static readonly Key = Symbol();

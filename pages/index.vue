@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import type { PrefectureCode } from "~/common_domain/entity/prefecture";
+import type { PrefectureCode } from "~/domain_common/entity/prefecture";
 import { useAppState } from "~/store/app_state";
 
 const store = useAppState();

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { provideRepo } from "./client_domain/repository/repos";
+import { provideRepo } from "./domain_client/repository/repos";
 
 const config = useAppConfig();
 const useMock = config.useMock != "false";

@@ -1,7 +1,7 @@
-import { wait } from "~/client_domain/util/wait";
+import { wait } from "~/domain_client/util/wait";
 import { PopulationsRepo } from "../repo_populations";
-import type { PopulationCompositions } from "~/common_domain/entity/population";
-import type { PrefectureCode } from "~/common_domain/entity/prefecture";
+import type { PopulationCompositions } from "~/domain_common/entity/population";
+import type { PrefectureCode } from "~/domain_common/entity/prefecture";
 
 export class MockPopulationsRepo extends PopulationsRepo {
   async getPopulationsByPrefecture(

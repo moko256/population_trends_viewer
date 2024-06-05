@@ -1,7 +1,7 @@
 import type {
   Prefecture,
   Prefectures,
-} from "~/common_domain/entity/prefecture";
+} from "~/domain_common/entity/prefecture";
 import { longCacheHeader } from "../long_cache";
 import { resasHeaders, resasUrl } from "../resas_client";
 
