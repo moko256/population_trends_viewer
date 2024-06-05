@@ -9,13 +9,17 @@ export default defineEventHandler(async (event) => {
 
   const query = await getValidatedQuery(event, querySchema.parse);
 
+  const firstPref = query.prefCodes[0];
+  const restPref = query.prefCodes.slice(1);
+
   const result = await $fetch<ResasPopulationComposition>(
     resasUrl("api/v1/population/composition/perYear"),
     {
       headers: resasHeaders(resasApiKey),
       query: {
-        prefCode: query.prefCode,
+        prefCode: firstPref,
         cityCode: "-",
+        addArea: restPref.map((v) => `${v}_`).join(","),
       },
     },
   );
@@ -38,7 +42,11 @@ export default defineEventHandler(async (event) => {
 });
 
 const querySchema = z.object({
-  prefCode: z.coerce.number(),
+  prefCodes: z
+    .string()
+    .min(1)
+    .transform((v) => v.split(","))
+    .pipe(z.array(z.coerce.number()).min(1)),
 });
 
 type ResasPopulationComposition = {
