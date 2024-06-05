@@ -1,6 +1,11 @@
 import { z } from "zod";
 import { longCacheHeader } from "../long_cache";
 import { resasHeaders, resasUrl } from "../resas_client";
+import type {
+  PopulationCompositions,
+  PopulationCompositionData,
+  PopulationValue,
+} from "~/common_domain/entity/population";
 
 // Query: prefCode (number)
 // Returns `PopulationCompositions`.

@@ -1,11 +1,11 @@
-type PopulationCompositions = PopulationCompositionData[];
+export type PopulationCompositions = PopulationCompositionData[];
 
-type PopulationCompositionData = {
+export type PopulationCompositionData = {
   label: string;
   data: PopulationValue[];
 };
 
-type PopulationValue = {
+export type PopulationValue = {
   year: number;
   value: number;
 };

@@ -9,12 +9,12 @@
         <p>Error when loading prefectures.</p>
         <button @click="loadPrefectures">Retry</button>
       </div>
-      <li v-for="{ name, code } in prefectures">
+      <li v-for="{ name, code } in prefectures" :key="name">
         <input
           type="checkbox"
           :value="name"
-          @change="onPrefectureCheck(code, $event)"
           :checked="isPrefectureSelected[code] == true"
+          @change="onPrefectureCheck(code, $event)"
         />
         <label :for="name">{{ name }}</label>
       </li>
@@ -36,6 +36,7 @@
 </template>
 
 <script setup lang="ts">
+import type { PrefectureCode } from "~/common_domain/entity/prefecture";
 import { useAppState } from "~/store/app_state";
 
 const store = useAppState();

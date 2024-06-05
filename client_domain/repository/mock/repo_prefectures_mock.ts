@@ -1,5 +1,6 @@
 import { wait } from "~/client_domain/util/wait";
 import { PrefecturesRepo } from "../repo_prefectures";
+import type { Prefectures } from "~/common_domain/entity/prefecture";
 
 export class MockPrefecturesRepo extends PrefecturesRepo {
   async getPrefectures(): Promise<Prefectures> {

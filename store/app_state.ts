@@ -1,6 +1,11 @@
 import { defineStore } from "pinia";
 import { PopulationsRepo } from "~/client_domain/repository/repo_populations";
 import { PrefecturesRepo } from "~/client_domain/repository/repo_prefectures";
+import type { PopulationCompositions } from "~/common_domain/entity/population";
+import type {
+  PrefectureCode,
+  Prefectures,
+} from "~/common_domain/entity/prefecture";
 
 export const useAppState = defineStore("counter", () => {
   const prefecturesRepo = inject<PrefecturesRepo>(PrefecturesRepo.Key)!;

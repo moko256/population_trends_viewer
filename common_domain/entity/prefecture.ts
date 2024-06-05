@@ -1,8 +1,8 @@
-type Prefectures = Prefecture[];
+export type Prefectures = Prefecture[];
 
-type Prefecture = {
+export type Prefecture = {
   name: string;
   code: PrefectureCode;
 };
 
-type PrefectureCode = number;
+export type PrefectureCode = number;
