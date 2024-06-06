@@ -47,30 +47,34 @@
 
     <!-- 人口グラフ -->
     <div id="populations-container">
-      <div v-if="canPopulationShow">
-        <!-- 人口グラフ 本体 -->
-        <div
-          id="graph-container"
-          class="populations-container-child"
-          :aria-busy="isPopulationsLoading"
-          aria-describedby="population-loading"
-        >
-          <PopulationsGraph :populations="populations" />
-        </div>
-
-        <!-- 人口グラフ ロード中 -->
-        <div v-if="isPopulationsLoading" class="populations-container-child">
-          <LoadingParts progress-id="population-loading" />
-        </div>
-
-        <!-- 人口グラフ エラー -->
-        <div v-if="isPopulationsError" class="populations-container-child">
-          <ErrorParts
-            :error-message="$t('populationsLoadError')"
-            @retry="loadPopulations"
-          />
-        </div>
+      <!-- 人口グラフ 本体 -->
+      <div
+        id="graph-container"
+        class="populations-container-child"
+        :aria-busy="isPopulationsLoading"
+        aria-describedby="population-loading"
+      >
+        <PopulationsGraph :populations="populations" />
       </div>
+
+      <!-- 人口グラフ ロード中 -->
+      <div v-if="isPopulationsLoading" class="populations-container-child">
+        <LoadingParts progress-id="population-loading" />
+      </div>
+
+      <!-- 人口グラフ エラー -->
+      <div v-if="isPopulationsError" class="populations-container-child">
+        <ErrorParts
+          :error-message="$t('populationsLoadError')"
+          @retry="loadPopulations"
+        />
+      </div>
+
+      <!-- 人口グラフ 都道府県選択なし -->
+      <CoverTextParts
+        v-if="!canPopulationShow"
+        :cover-text="$t('populationsNeedPrefectures')"
+      />
     </div>
   </div>
 </template>
