@@ -7,6 +7,18 @@ import { provideRepo } from "./domain_client/repository/repos";
 
 const config = useAppConfig();
 provideRepo(config.useMock);
+
+const { setLocale, t } = useI18n();
+
+onMounted(() => {
+  setLocale(navigator.language);
+});
+
+const pageTitle = computed(() => t("pageTitle"));
+
+useHead({
+  title: pageTitle,
+});
 </script>
 
 <style>

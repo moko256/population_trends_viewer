@@ -30,7 +30,7 @@
       <!-- 県一覧 エラー -->
       <div v-if="isPrefecturesError" class="prefectures-container-child">
         <ErrorParts
-          error-message="Error when loading prefectures."
+          :error-message="$t('prefecturesLoadError')"
           @retry="loadPrefectures"
         />
       </div>
@@ -60,7 +60,7 @@
         <!-- 人口グラフ エラー -->
         <div v-if="isPopulationsError" class="populations-container-child">
           <ErrorParts
-            error-message="Error when loading populations."
+            :error-message="$t('populationsLoadError')"
             @retry="loadPopulations"
           />
         </div>

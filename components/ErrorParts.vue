@@ -1,7 +1,9 @@
 <template>
   <div class="error-bg">
     <p class="error-text">{{ errorMessage }}</p>
-    <button class="error-button" @click="onRetry">Retry</button>
+    <button class="error-button" @click="onRetry">
+      {{ $t("reloadAction") }}
+    </button>
   </div>
 </template>
 

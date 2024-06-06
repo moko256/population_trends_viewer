@@ -136,3 +136,8 @@ flowchart LR
 
 - The `app.vue` provide repositories by Vue's `provide()`.
 - The stores acquire repositories by Vue's `inject()`.
+
+### Localization
+
+- i18n.config.ts
+  - Languages: en, ja

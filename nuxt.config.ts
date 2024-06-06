@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     resasApiKey: process.env.RESAS_API_KEY,
   },
 
-  modules: ["@nuxt/eslint", "@pinia/nuxt"],
+  modules: ["@nuxt/eslint", "@pinia/nuxt", "@nuxtjs/i18n"],
 
   // https://nuxt.com/docs/guide/concepts/typescript
   typescript: {
@@ -17,5 +17,9 @@ export default defineNuxtConfig({
     head: {
       viewport: "width=device-width,height=device-height,initial-scale=1",
     },
+  },
+
+  i18n: {
+    vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },
 });

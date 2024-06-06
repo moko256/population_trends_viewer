@@ -24,6 +24,8 @@ interface Props {
 }
 const props = defineProps<Props>();
 
+const { t } = useI18n();
+
 ChartJS.register(
   Title,
   Tooltip,
@@ -103,7 +105,7 @@ const chartOptions: ChartOptions<"line"> = {
         font: {
           size: 14,
         },
-        text: "年度",
+        text: t("populationsGraphAxisYears"),
       },
     },
     y: {
@@ -113,7 +115,7 @@ const chartOptions: ChartOptions<"line"> = {
         font: {
           size: 14,
         },
-        text: "人口数",
+        text: t("populationsGraphAxisPopulations"),
       },
     },
   },
