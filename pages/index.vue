@@ -1,7 +1,8 @@
 <template>
   <div id="container">
-    <!-- Prefectures -->
+    <!-- 県一覧 -->
     <div id="prefectures-container">
+      <!-- 県一覧 本体 -->
       <ul id="prefecture-grid-parent" class="prefectures-container-child">
         <li
           v-for="{ name, code } in prefectures"
@@ -12,6 +13,7 @@
         >
           <input
             type="checkbox"
+            class="prefecture-checkbox"
             :value="name"
             :checked="isPrefectureSelected[code] == true"
             @change="onPrefectureCheck(code, $event)"
@@ -20,10 +22,12 @@
         </li>
       </ul>
 
+      <!-- 県一覧 ロード中 -->
       <div v-if="isPrefecturesLoading" class="prefectures-container-child">
         <LoadingParts progress-id="prefectures-loading" />
       </div>
 
+      <!-- 県一覧 エラー -->
       <div v-if="isPrefecturesError" class="prefectures-container-child">
         <ErrorParts
           error-message="Error when loading prefectures."
@@ -32,11 +36,13 @@
       </div>
     </div>
 
+    <!-- 区切り線 -->
     <div class="horizontal-divider"></div>
 
-    <!-- Populations -->
+    <!-- 人口グラフ -->
     <div id="populations-container">
       <div v-if="canPopulationShow">
+        <!-- 人口グラフ 本体 -->
         <div
           id="graph-container"
           class="populations-container-child"
@@ -46,10 +52,12 @@
           <PopulationsGraph :populations="populations" />
         </div>
 
+        <!-- 人口グラフ ロード中 -->
         <div v-if="isPopulationsLoading" class="populations-container-child">
           <LoadingParts progress-id="population-loading" />
         </div>
 
+        <!-- 人口グラフ エラー -->
         <div v-if="isPopulationsError" class="populations-container-child">
           <ErrorParts
             error-message="Error when loading populations."
@@ -98,6 +106,10 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
   height: 100vh;
 }
 
+/*
+  横長:
+  レイアウト方向を横にする
+*/
 @media (orientation: landscape) {
   #container {
     flex-direction: row;
@@ -127,9 +139,28 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
   height: 100%;
 }
 
+/*
+  縦長:
+  グラフが大きくならないように最大の高さを固定
+
+  横長:
+  県一覧の横幅を固定
+*/
+@media (orientation: portrait) {
+  #populations-container {
+    max-height: 30em;
+  }
+}
+@media (orientation: landscape) {
+  #prefectures-container {
+    flex: initial;
+    width: 25em;
+  }
+}
+
 #graph-container {
   display: flex;
-  padding: 8px 8px 0px 8px;
+  padding: 16px;
 }
 
 .horizontal-divider {
@@ -138,12 +169,20 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
 }
 
 #prefecture-grid-parent {
-  columns: 100px auto;
   overflow-y: scroll;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  padding: 16px;
 }
 
 .prefecture-grid-child {
   list-style: none;
   padding: 4px;
+}
+
+.prefecture-checkbox {
+  margin-right: 8px;
+  transform: scale(1.2);
 }
 </style>
