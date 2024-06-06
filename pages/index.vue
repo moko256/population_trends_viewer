@@ -2,25 +2,31 @@
   <div id="container">
     <!-- 県一覧 -->
     <div id="prefectures-container">
-      <!-- 県一覧 本体 -->
-      <ul id="prefecture-grid-parent" class="prefectures-container-child">
-        <li
-          v-for="{ name, code } in prefectures"
-          :key="name"
-          class="prefecture-grid-child"
-          :aria-busy="isPrefecturesLoading"
-          aria-describedby="prefectures-loading"
-        >
-          <input
-            type="checkbox"
-            class="prefecture-checkbox"
-            :value="name"
-            :checked="isPrefectureSelected[code] == true"
-            @change="onPrefectureCheck(code, $event)"
-          />
-          <label :for="name">{{ name }}</label>
-        </li>
-      </ul>
+      <!-- 県一覧 スクロール範囲 -->
+      <div class="prefectures-container-child">
+        <!-- 県一覧 タイトル -->
+        <p id="prefectures-header">{{ $t("prefecturesHeader") }}</p>
+
+        <!-- 県一覧 本体 -->
+        <ul id="prefecture-grid-parent">
+          <li
+            v-for="{ name, code } in prefectures"
+            :key="name"
+            class="prefecture-grid-child"
+            :aria-busy="isPrefecturesLoading"
+            aria-describedby="prefectures-loading"
+          >
+            <input
+              type="checkbox"
+              class="prefecture-checkbox"
+              :value="name"
+              :checked="isPrefectureSelected[code] == true"
+              @change="onPrefectureCheck(code, $event)"
+            />
+            <label :for="name">{{ name }}</label>
+          </li>
+        </ul>
+      </div>
 
       <!-- 県一覧 ロード中 -->
       <div v-if="isPrefecturesLoading" class="prefectures-container-child">
@@ -119,12 +125,26 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
 #prefectures-container {
   position: relative;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .prefectures-container-child {
   position: absolute;
+  overflow-y: scroll;
   width: 100%;
   height: 100%;
+}
+
+#prefectures-header {
+  margin: 4px 16px;
+  padding: 4px;
+
+  width: 6em;
+  text-align: center;
+  flex: initial;
+  border: solid 2px;
+  border-color: gray;
 }
 
 #populations-container {
@@ -151,6 +171,7 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
     max-height: 30em;
   }
 }
+
 @media (orientation: landscape) {
   #prefectures-container {
     flex: initial;
@@ -169,11 +190,10 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
 }
 
 #prefecture-grid-parent {
-  overflow-y: scroll;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
-  padding: 16px;
+  padding: 0px 16px 16px 16px;
 }
 
 .prefecture-grid-child {
