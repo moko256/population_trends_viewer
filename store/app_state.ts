@@ -24,7 +24,7 @@ export const useAppState = defineStore("counter", () => {
 
   const populations = ref<PopulationCompositions>([]);
   const canPopulationShow = ref(false);
-  const isPopulationsLoading = ref(true);
+  const isPopulationsLoading = ref(false);
   const isPopulationsError = ref(false);
 
   async function loadPrefectures() {
