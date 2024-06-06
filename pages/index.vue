@@ -6,9 +6,9 @@
         <li
           v-for="{ name, code } in prefectures"
           :key="name"
+          class="prefecture-grid-child"
           :aria-busy="isPrefecturesLoading"
           aria-describedby="prefectures-loading"
-          class="prefecture-grid-child"
         >
           <input
             type="checkbox"
