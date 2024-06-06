@@ -4,7 +4,7 @@ import type { Prefectures } from "~/domain_common/entity/prefecture";
 
 export class MockPrefecturesRepo extends PrefecturesRepo {
   async getPrefectures(): Promise<Prefectures> {
-    await wait(2);
+    await wait(0.3);
     return [
       {
         name: "A県",

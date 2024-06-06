@@ -7,7 +7,7 @@ export class MockPopulationsRepo extends PopulationsRepo {
   async getPopulationsByPrefecture(
     prefectures: PrefectureCode[],
   ): Promise<PopulationCompositions> {
-    await wait(2);
+    await wait(0.3);
     return [
       {
         label: `総人口 (${JSON.stringify(prefectures)})`,
