@@ -26,6 +26,13 @@ const props = defineProps<Props>();
 
 const { t } = useI18n();
 
+const populationsGraphAxisYears = computed(() =>
+  t("populationsGraphAxisYears"),
+);
+const populationsGraphAxisPopulations = computed(() =>
+  t("populationsGraphAxisPopulations"),
+);
+
 ChartJS.register(
   Title,
   Tooltip,
@@ -88,36 +95,38 @@ const chartData = computed<ChartData<"line">>(() => {
   };
 });
 
-const chartOptions: ChartOptions<"line"> = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      align: "start",
-      position: "right",
-    },
-  },
-  scales: {
-    x: {
-      title: {
-        display: true,
-        align: "end",
-        font: {
-          size: 14,
-        },
-        text: t("populationsGraphAxisYears"),
+const chartOptions = computed<ChartOptions<"line">>(() => {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        align: "start",
+        position: "right",
       },
     },
-    y: {
-      title: {
-        display: true,
-        align: "end",
-        font: {
-          size: 14,
+    scales: {
+      x: {
+        title: {
+          display: true,
+          align: "end",
+          font: {
+            size: 14,
+          },
+          text: populationsGraphAxisYears.value,
         },
-        text: t("populationsGraphAxisPopulations"),
+      },
+      y: {
+        title: {
+          display: true,
+          align: "end",
+          font: {
+            size: 14,
+          },
+          text: populationsGraphAxisPopulations.value,
+        },
       },
     },
-  },
-};
+  };
+});
 </script>
