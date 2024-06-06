@@ -6,8 +6,7 @@
 import { provideRepo } from "./domain_client/repository/repos";
 
 const config = useAppConfig();
-const useMock = config.useMock != "false";
-provideRepo(useMock);
+provideRepo(config.useMock);
 </script>
 
 <style>
