@@ -3,8 +3,11 @@
     <!-- 県一覧 -->
     <div id="prefectures-container">
       <LoadableContainerParts
-        :loading="isPrefecturesLoading"
+        :is-loading="isPrefecturesLoading"
         :loading-message="$t(`prefectureLoading`)"
+        :is-error="isPrefecturesError"
+        :error-message="$t('prefecturesLoadError')"
+        @retry="loadPrefectures"
       >
         <!-- 県一覧 スクロール範囲 -->
         <div class="prefectures-container-child">
@@ -31,14 +34,6 @@
           </ul>
         </div>
       </LoadableContainerParts>
-
-      <!-- 県一覧 エラー -->
-      <div v-if="isPrefecturesError" class="prefectures-container-child">
-        <ErrorParts
-          :error-message="$t('prefecturesLoadError')"
-          @retry="loadPrefectures"
-        />
-      </div>
     </div>
 
     <!-- 区切り線 -->
@@ -48,27 +43,22 @@
     <div id="populations-container">
       <!-- 人口グラフ 本体 -->
       <LoadableContainerParts
-        :loading="isPopulationsLoading"
+        :is-loading="isPopulationsLoading"
         :loading-message="$t(`populationsLoading`)"
+        :is-error="isPopulationsError"
+        :error-message="$t('populationsLoadError')"
+        @retry="loadPopulations"
       >
         <div id="graph-container" class="populations-container-child">
           <PopulationsGraph :populations="populations" />
         </div>
-      </LoadableContainerParts>
 
-      <!-- 人口グラフ エラー -->
-      <div v-if="isPopulationsError" class="populations-container-child">
-        <ErrorParts
-          :error-message="$t('populationsLoadError')"
-          @retry="loadPopulations"
+        <!-- 人口グラフ 都道府県選択なし -->
+        <CoverTextParts
+          v-if="!canPopulationLoadWithSelections"
+          :cover-text="$t('populationsNeedPrefectures')"
         />
-      </div>
-
-      <!-- 人口グラフ 都道府県選択なし -->
-      <CoverTextParts
-        v-if="!canPopulationLoadWithSelections"
-        :cover-text="$t('populationsNeedPrefectures')"
-      />
+      </LoadableContainerParts>
     </div>
   </div>
 </template>
