@@ -3,7 +3,9 @@ export default defineI18nConfig(() => ({
   fallbackLocale: "en",
   messages: {
     en: {
-      pageTitle: "Population compositions of each prefectures",
+      pageTitle: "Population compositions of each prefecture",
+      pageDescription:
+        "Show the population composition of each prefecture in Japan.",
       reloadAction: "Reload",
       prefecturesHeader: "Prefectures",
       prefectureLoading: "Loading prefectures…",
@@ -16,6 +18,7 @@ export default defineI18nConfig(() => ({
     },
     ja: {
       pageTitle: "都道府県人口統計",
+      pageDescription: "都道府県別の人口統計を表示します",
       reloadAction: "再取得",
       prefecturesHeader: "都道府県",
       prefectureLoading: "県一覧を取得中…",

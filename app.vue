@@ -23,12 +23,14 @@ provideRepo(
 const { locale, t } = useI18n();
 
 const pageTitle = computed(() => t("pageTitle"));
+const pageDescription = computed(() => t("pageDescription"));
 
 useHead({
   title: pageTitle,
   htmlAttrs: {
     lang: locale,
   },
+  meta: [{ name: "description", content: pageDescription }],
 });
 </script>
 
