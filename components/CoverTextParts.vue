@@ -1,6 +1,6 @@
 <template>
-  <div class="cover-bg">
-    <p class="cover-text">{{ coverText }}</p>
+  <div :class="$style.coverBg">
+    <p :class="$style.coverText">{{ coverText }}</p>
   </div>
 </template>
 
@@ -12,8 +12,8 @@ const props = defineProps<Props>();
 const coverText = computed(() => props.coverText);
 </script>
 
-<style>
-.cover-bg {
+<style module>
+.coverBg {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@ const coverText = computed(() => props.coverText);
 
   background: #ffffffb0;
 }
-.cover-text {
+.coverText {
   text-align: center;
 }
 </style>

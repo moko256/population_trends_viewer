@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-bar-bg">
+  <div :class="$style.loadingBarBg">
     <progress :id="progressId"></progress>
   </div>
 </template>
@@ -12,8 +12,8 @@ const props = defineProps<Props>();
 const progressId = computed(() => props.progressId);
 </script>
 
-<style>
-.loading-bar-bg {
+<style module>
+.loadingBarBg {
   position: absolute;
   display: flex;
   width: 100%;

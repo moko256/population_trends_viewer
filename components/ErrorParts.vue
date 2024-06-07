@@ -1,7 +1,7 @@
 <template>
-  <div class="error-bg">
-    <p class="error-text">{{ errorMessage }}</p>
-    <button class="error-button" @click="onRetry">
+  <div :class="$style.errorBg">
+    <p :class="$style.errorText">{{ errorMessage }}</p>
+    <button :class="$style.errorButton" @click="onRetry">
       {{ $t("reloadAction") }}
     </button>
   </div>
@@ -17,8 +17,8 @@ const errorMessage = computed(() => "⚠ " + props.errorMessage);
 const onRetry = computed(() => props.onRetry);
 </script>
 
-<style>
-.error-bg {
+<style module>
+.errorBg {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -32,14 +32,14 @@ const onRetry = computed(() => props.onRetry);
 
   background: #ffccccb0;
 }
-.error-button {
+.errorButton {
   border-style: solid;
   border-color: #252525;
   border-width: 2px;
   border-radius: 4px;
   padding: 4px 16px 4px 16px;
 }
-.error-text {
+.errorText {
   text-align: center;
 }
 </style>
