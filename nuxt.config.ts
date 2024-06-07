@@ -18,6 +18,9 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
+  // CSS for reset browser default style
+  css: ["ress/ress.css"],
+
   app: {
     head: {
       viewport: "width=device-width,height=device-height,initial-scale=1",

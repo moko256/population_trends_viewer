@@ -32,7 +32,4 @@ useHead({
 });
 </script>
 
-<style>
-/* CSS for reset browser default style */
-@import url("ress/ress.css");
-</style>
+<style module></style>
