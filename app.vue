@@ -13,16 +13,15 @@ provideRepo(
   config.mockDelaySec,
 );
 
-const { setLocale, t } = useI18n();
-
-onMounted(() => {
-  setLocale(navigator.language);
-});
+const { locale, t } = useI18n();
 
 const pageTitle = computed(() => t("pageTitle"));
 
 useHead({
   title: pageTitle,
+  htmlAttrs: {
+    lang: locale,
+  },
 });
 </script>
 
