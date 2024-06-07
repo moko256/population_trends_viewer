@@ -5,6 +5,7 @@
       <!-- 県一覧 スクロール範囲 -->
       <div class="prefectures-container-child">
         <!-- 県一覧 タイトル -->
+        <TitleParts />
         <p id="prefectures-header">{{ $t("prefecturesHeader") }}</p>
 
         <!-- 県一覧 本体 -->
