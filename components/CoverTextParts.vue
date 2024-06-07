@@ -16,14 +16,12 @@ const coverText = computed(() => props.coverText);
 .coverBg {
   position: absolute;
   display: flex;
+
   flex-direction: column;
-  gap: 16px;
+  justify-content: center;
 
   width: 100%;
   height: 100%;
-
-  align-items: center;
-  justify-content: center;
 
   background: #ffffffb0;
 }
