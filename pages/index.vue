@@ -1,7 +1,7 @@
 <template>
-  <div id="container">
+  <div :class="$style.rootContainer">
     <!-- 県一覧 -->
-    <div id="prefectures-container">
+    <div :class="$style.prefecturesContainer">
       <LoadableContainerParts
         :is-loading="isPrefecturesLoading"
         :loading-message="$t(`prefectureLoading`)"
@@ -10,21 +10,23 @@
         @retry="loadPrefectures"
       >
         <!-- 県一覧 スクロール範囲 -->
-        <div class="prefectures-container-child">
+        <div :class="$style.prefecturesContainerChild">
           <!-- 県一覧 タイトル -->
           <TitleParts />
-          <p id="prefectures-header">{{ $t("prefecturesHeader") }}</p>
+          <h2 :class="$style.prefecturesHeader">
+            {{ $t("prefecturesHeader") }}
+          </h2>
 
           <!-- 県一覧 本体 -->
-          <ul id="prefecture-grid-parent">
+          <ul :class="$style.prefectureGridParent">
             <li
               v-for="{ name, code } in prefectures"
               :key="name"
-              class="prefecture-grid-child"
+              :class="$style.prefectureGridChild"
             >
               <input
                 type="checkbox"
-                class="prefecture-checkbox"
+                :class="$style.prefectureCheckbox"
                 :value="name"
                 :checked="isPrefectureSelected[code] == true"
                 @change="onPrefectureCheck(code, $event)"
@@ -37,10 +39,10 @@
     </div>
 
     <!-- 区切り線 -->
-    <div class="horizontal-divider"></div>
+    <div :class="$style.rootContainerDivider"></div>
 
     <!-- 人口グラフ -->
-    <div id="populations-container">
+    <div :class="$style.populationsContainer">
       <!-- 人口グラフ 本体 -->
       <LoadableContainerParts
         :is-loading="isPopulationsLoading"
@@ -49,7 +51,9 @@
         :error-message="$t('populationsLoadError')"
         @retry="loadPopulations"
       >
-        <div id="graph-container" class="populations-container-child">
+        <div
+          :class="`${$style.populationsContainerChild} ${$style.graphContainer}`"
+        >
           <PopulationsGraph :populations="populations" />
         </div>
 
@@ -92,8 +96,9 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
 }
 </script>
 
-<style>
-#container {
+<style module>
+/* 最上位レイアウト */
+.rootContainer {
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -105,46 +110,80 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
   レイアウト方向を横にする
 */
 @media (orientation: landscape) {
-  #container {
+  .rootContainer {
     flex-direction: row;
   }
 }
 
-#prefectures-container {
-  position: relative;
+.rootContainerDivider {
+  flex-basis: 2px;
+  background-color: gray;
+}
+
+/* 県一覧 */
+
+.prefecturesContainer {
   flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.prefectures-container-child {
+.prefecturesContainerChild {
   position: absolute;
   overflow-y: scroll;
   width: 100%;
   height: 100%;
 }
 
-#prefectures-header {
+.prefecturesHeader {
   margin: 4px 16px;
   padding: 4px;
 
-  width: 6em;
+  width: 7em;
   text-align: center;
   flex: initial;
-  border: solid 2px;
-  border-color: gray;
+  border: solid 2px gray;
+
+  font: 1em normal;
 }
 
-#populations-container {
-  display: flex;
+/* 県チェックボックス一覧 */
+
+.prefectureGridParent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  padding: 0px 16px 16px 16px;
+}
+
+.prefectureGridChild {
+  list-style: none;
+  padding: 4px;
+}
+
+.prefectureCheckbox {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+
+/* 人口グラフ */
+
+.populationsContainer {
   position: relative;
+  display: flex;
   flex: 1;
 }
 
-.populations-container-child {
+.populationsContainerChild {
   position: absolute;
   width: 100%;
   height: 100%;
+}
+
+.graphContainer {
+  display: flex;
+  padding: 16px;
 }
 
 /*
@@ -155,42 +194,15 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
   県一覧の横幅を固定
 */
 @media (orientation: portrait) {
-  #populations-container {
+  .populationsContainer {
     max-height: 30em;
   }
 }
 
 @media (orientation: landscape) {
-  #prefectures-container {
+  .prefecturesContainer {
     flex: initial;
     width: 25em;
   }
-}
-
-#graph-container {
-  display: flex;
-  padding: 16px;
-}
-
-.horizontal-divider {
-  flex-basis: 2px;
-  background-color: gray;
-}
-
-#prefecture-grid-parent {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-
-  padding: 0px 16px 16px 16px;
-}
-
-.prefecture-grid-child {
-  list-style: none;
-  padding: 4px;
-}
-
-.prefecture-checkbox {
-  margin-right: 8px;
-  transform: scale(1.2);
 }
 </style>
