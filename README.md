@@ -32,6 +32,11 @@ npm run test
 npm run test:watch
 ```
 
+```bash
+# Deploy to Cloudflare Pages
+npm run deploy:cloudflare
+```
+
 ## Configurations
 
 In `.env`:
