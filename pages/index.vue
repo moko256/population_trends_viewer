@@ -18,22 +18,11 @@
           </h2>
 
           <!-- 県一覧 本体 -->
-          <ul :class="$style.prefectureGridParent">
-            <li
-              v-for="{ name, code } in prefectures"
-              :key="name"
-              :class="$style.prefectureGridChild"
-            >
-              <input
-                type="checkbox"
-                :class="$style.prefectureCheckbox"
-                :value="name"
-                :checked="isPrefectureSelected[code] == true"
-                @change="onPrefectureCheck(code, $event)"
-              />
-              <label :for="name">{{ name }}</label>
-            </li>
-          </ul>
+          <PrefecturesCheckboxes
+            :prefectures="prefectures"
+            :is-prefecture-selected="isPrefectureSelected"
+            :select-prefecture="selectPrefecture"
+          ></PrefecturesCheckboxes>
         </div>
       </LoadableContainerParts>
     </div>
@@ -68,7 +57,6 @@
 </template>
 
 <script setup lang="ts">
-import type { PrefectureCode } from "~/domain_common/entity/prefecture";
 import { useAppState } from "~/store/app_state";
 
 const store = useAppState();
@@ -89,11 +77,6 @@ const { loadPrefectures, loadPopulations, selectPrefecture } = store;
 onMounted(() => {
   loadPrefectures();
 });
-
-function onPrefectureCheck(code: PrefectureCode, event: Event) {
-  const checked = (event.target as HTMLInputElement).checked;
-  selectPrefecture(code, checked);
-}
 </script>
 
 <style module>
@@ -146,25 +129,6 @@ function onPrefectureCheck(code: PrefectureCode, event: Event) {
   border: solid 2px gray;
 
   font: 1em normal;
-}
-
-/* 県チェックボックス一覧 */
-
-.prefectureGridParent {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-
-  padding: 0px 16px 16px 16px;
-}
-
-.prefectureGridChild {
-  list-style: none;
-  padding: 4px;
-}
-
-.prefectureCheckbox {
-  margin-right: 8px;
-  transform: scale(1.2);
 }
 
 /* 人口グラフ */
