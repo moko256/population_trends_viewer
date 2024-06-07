@@ -31,6 +31,9 @@ In `.env`:
 In `app.config.ts`:
 
 - useMock (default: false)
+- mockFailAcqirePrefecture (default: false)
+- mockFailAcqirePopulation (default: false)
+- mockDelaySec (default: 0.1)
 
 ## Design document
 

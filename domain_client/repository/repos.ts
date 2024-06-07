@@ -5,11 +5,22 @@ import { MockPrefecturesRepo } from "./mock/repo_prefectures_mock";
 import { PopulationsRepo } from "./repo_populations";
 import { PrefecturesRepo } from "./repo_prefectures";
 
-export function provideRepo(useMock: boolean) {
+export function provideRepo(
+  useMock: boolean,
+  mockFailAcqirePrefecture: boolean,
+  mockFailAcqirePopulation: boolean,
+  mockDelaySec: number,
+) {
   if (useMock) {
     console.log("Loading mock repositories...");
-    provide(PrefecturesRepo.Key, new MockPrefecturesRepo());
-    provide(PopulationsRepo.Key, new MockPopulationsRepo());
+    provide(
+      PrefecturesRepo.Key,
+      new MockPrefecturesRepo(mockDelaySec, mockFailAcqirePrefecture),
+    );
+    provide(
+      PopulationsRepo.Key,
+      new MockPopulationsRepo(mockDelaySec, mockFailAcqirePopulation),
+    );
   } else {
     provide(PrefecturesRepo.Key, new ImplPrefecturesRepo());
     provide(PopulationsRepo.Key, new ImplPopulationsRepo());

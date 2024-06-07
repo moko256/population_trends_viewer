@@ -6,7 +6,12 @@
 import { provideRepo } from "./domain_client/repository/repos";
 
 const config = useAppConfig();
-provideRepo(config.useMock);
+provideRepo(
+  config.useMock,
+  config.mockFailAcqirePrefecture,
+  config.mockFailAcqirePopulation,
+  config.mockDelaySec,
+);
 
 const { setLocale, t } = useI18n();
 

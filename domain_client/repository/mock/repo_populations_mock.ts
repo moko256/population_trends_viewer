@@ -4,10 +4,23 @@ import type { PopulationCompositions } from "~/domain_common/entity/population";
 import type { PrefectureCode } from "~/domain_common/entity/prefecture";
 
 export class MockPopulationsRepo extends PopulationsRepo {
+  delaySec: number;
+  shouldFail: boolean;
+
+  constructor(delaySec: number, shouldFail: boolean) {
+    super();
+    this.delaySec = delaySec;
+    this.shouldFail = shouldFail;
+  }
+
   async getPopulationsByPrefecture(
     prefectures: PrefectureCode[],
   ): Promise<PopulationCompositions> {
-    await wait(0.3);
+    await wait(this.delaySec);
+    if (this.shouldFail) {
+      throw new Error("Mock should fail");
+    }
+
     return [
       {
         label: `総人口 (${JSON.stringify(prefectures)})`,
