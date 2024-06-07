@@ -8,11 +8,13 @@ import type {
 } from "~/domain_common/entity/prefecture";
 
 export const useAppState = defineStore("counter", () => {
+  // Repositories
   const prefecturesRepo = inject<PrefecturesRepo>(PrefecturesRepo.Key)!;
   const populationsRepo = inject<PopulationsRepo>(PopulationsRepo.Key)!;
 
+  // Prefectures
   const prefectures = ref<Prefectures>([]);
-  const isPrefecturesLoading = ref(true);
+  const isPrefecturesLoading = ref(false);
   const isPrefecturesError = ref(false);
 
   const isPrefectureSelected = ref<Record<PrefectureCode, boolean>>({});
@@ -22,11 +24,13 @@ export const useAppState = defineStore("counter", () => {
       .map((v) => v.code),
   );
 
+  // Populations
   const populations = ref<PopulationCompositions>([]);
-  const canPopulationShow = ref(false);
+  const canPopulationLoadWithSelections = ref(false);
   const isPopulationsLoading = ref(false);
   const isPopulationsError = ref(false);
 
+  // Load prefectures.
   async function loadPrefectures() {
     isPrefecturesLoading.value = true;
     isPrefecturesError.value = false;
@@ -42,6 +46,7 @@ export const useAppState = defineStore("counter", () => {
     isPrefecturesLoading.value = false;
   }
 
+  // Load populations.
   async function loadPopulations() {
     isPopulationsLoading.value = true;
     isPopulationsError.value = false;
@@ -52,7 +57,7 @@ export const useAppState = defineStore("counter", () => {
       1 <= selectedPrefectureCodes.value.length &&
       selectedPrefectureCodes.value.length <= 11
     ) {
-      canPopulationShow.value = true;
+      canPopulationLoadWithSelections.value = true;
 
       try {
         populations.value = await populationsRepo.getPopulationsByPrefecture(
@@ -63,17 +68,19 @@ export const useAppState = defineStore("counter", () => {
         isPopulationsError.value = true;
       }
     } else {
-      canPopulationShow.value = false;
+      canPopulationLoadWithSelections.value = false;
       populations.value = [];
     }
 
     isPopulationsLoading.value = false;
   }
 
-  function selectPrefecture(prefCode: PrefectureCode, selected: boolean) {
+  // Select prefecture.
+  // The populations will load automatically.
+  async function selectPrefecture(prefCode: PrefectureCode, selected: boolean) {
     isPrefectureSelected.value[prefCode] = selected;
 
-    loadPopulations();
+    await loadPopulations();
   }
 
   return {
@@ -83,7 +90,7 @@ export const useAppState = defineStore("counter", () => {
     isPrefectureSelected,
     selectedPrefectureCodes,
     populations,
-    canPopulationShow,
+    canPopulationLoadWithSelections,
     isPopulationsLoading,
     isPopulationsError,
     loadPrefectures,

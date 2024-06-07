@@ -66,7 +66,7 @@
 
       <!-- 人口グラフ 都道府県選択なし -->
       <CoverTextParts
-        v-if="!canPopulationShow"
+        v-if="!canPopulationLoadWithSelections"
         :cover-text="$t('populationsNeedPrefectures')"
       />
     </div>
@@ -85,7 +85,7 @@ const {
   isPrefecturesError,
   isPrefectureSelected,
   populations,
-  canPopulationShow,
+  canPopulationLoadWithSelections,
   isPopulationsLoading,
   isPopulationsError,
 } = storeToRefs(store);
