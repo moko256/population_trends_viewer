@@ -19,10 +19,9 @@ import {
 } from "chart.js";
 import type { PopulationCompositions } from "~/domain_common/entity/population";
 
-interface Props {
+const props = defineProps<{
   populations: PopulationCompositions;
-}
-const props = defineProps<Props>();
+}>();
 
 const { t } = useI18n();
 

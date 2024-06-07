@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.errorBg">
-    <p :class="$style.errorText">{{ errorMessage }}</p>
+    <p :class="$style.errorText">{{ errorMessageWithIcon }}</p>
     <button :class="$style.errorButton" @click="onRetry">
       {{ $t("reloadAction") }}
     </button>
@@ -8,13 +8,11 @@
 </template>
 
 <script setup lang="ts">
-interface Props {
+const props = defineProps<{
   errorMessage: string;
   onRetry: () => void;
-}
-const props = defineProps<Props>();
-const errorMessage = computed(() => "⚠ " + props.errorMessage);
-const onRetry = computed(() => props.onRetry);
+}>();
+const errorMessageWithIcon = computed(() => "⚠ " + props.errorMessage);
 </script>
 
 <style module>

@@ -6,11 +6,10 @@
 </template>
 
 <script setup lang="ts">
-interface Props {
+defineProps<{
   progressId: string;
   loadingMessage: string;
-}
-defineProps<Props>();
+}>();
 </script>
 
 <style module>

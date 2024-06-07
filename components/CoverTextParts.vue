@@ -5,11 +5,9 @@
 </template>
 
 <script setup lang="ts">
-interface Props {
+defineProps<{
   coverText: string;
-}
-const props = defineProps<Props>();
-const coverText = computed(() => props.coverText);
+}>();
 </script>
 
 <style module>

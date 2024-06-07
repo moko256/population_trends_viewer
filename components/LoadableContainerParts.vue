@@ -10,11 +10,10 @@
 </template>
 
 <script setup lang="ts">
-interface Props {
+defineProps<{
   loading: boolean;
   loadingMessage: string;
-}
-defineProps<Props>();
+}>();
 
 const progressId = useId();
 </script>
