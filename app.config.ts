@@ -1,6 +1,6 @@
 export default defineAppConfig({
-  useMock: true,
+  useMock: false,
   mockFailAcqirePrefecture: false,
-  mockFailAcqirePopulation: true,
-  mockDelaySec: 1,
+  mockFailAcqirePopulation: false,
+  mockDelaySec: 0.1,
 });
