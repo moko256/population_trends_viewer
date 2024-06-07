@@ -2,37 +2,35 @@
   <div id="container">
     <!-- 県一覧 -->
     <div id="prefectures-container">
-      <!-- 県一覧 スクロール範囲 -->
-      <div class="prefectures-container-child">
-        <!-- 県一覧 タイトル -->
-        <TitleParts />
-        <p id="prefectures-header">{{ $t("prefecturesHeader") }}</p>
+      <LoadableContainerParts
+        :loading="isPrefecturesLoading"
+        :loading-message="$t(`prefectureLoading`)"
+      >
+        <!-- 県一覧 スクロール範囲 -->
+        <div class="prefectures-container-child">
+          <!-- 県一覧 タイトル -->
+          <TitleParts />
+          <p id="prefectures-header">{{ $t("prefecturesHeader") }}</p>
 
-        <!-- 県一覧 本体 -->
-        <ul id="prefecture-grid-parent">
-          <li
-            v-for="{ name, code } in prefectures"
-            :key="name"
-            class="prefecture-grid-child"
-            :aria-busy="isPrefecturesLoading"
-            aria-describedby="prefectures-loading"
-          >
-            <input
-              type="checkbox"
-              class="prefecture-checkbox"
-              :value="name"
-              :checked="isPrefectureSelected[code] == true"
-              @change="onPrefectureCheck(code, $event)"
-            />
-            <label :for="name">{{ name }}</label>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 県一覧 ロード中 -->
-      <div v-if="isPrefecturesLoading" class="prefectures-container-child">
-        <LoadingParts progress-id="prefectures-loading" />
-      </div>
+          <!-- 県一覧 本体 -->
+          <ul id="prefecture-grid-parent">
+            <li
+              v-for="{ name, code } in prefectures"
+              :key="name"
+              class="prefecture-grid-child"
+            >
+              <input
+                type="checkbox"
+                class="prefecture-checkbox"
+                :value="name"
+                :checked="isPrefectureSelected[code] == true"
+                @change="onPrefectureCheck(code, $event)"
+              />
+              <label :for="name">{{ name }}</label>
+            </li>
+          </ul>
+        </div>
+      </LoadableContainerParts>
 
       <!-- 県一覧 エラー -->
       <div v-if="isPrefecturesError" class="prefectures-container-child">
@@ -49,19 +47,14 @@
     <!-- 人口グラフ -->
     <div id="populations-container">
       <!-- 人口グラフ 本体 -->
-      <div
-        id="graph-container"
-        class="populations-container-child"
-        :aria-busy="isPopulationsLoading"
-        aria-describedby="population-loading"
+      <LoadableContainerParts
+        :loading="isPopulationsLoading"
+        :loading-message="$t(`populationsLoading`)"
       >
-        <PopulationsGraph :populations="populations" />
-      </div>
-
-      <!-- 人口グラフ ロード中 -->
-      <div v-if="isPopulationsLoading" class="populations-container-child">
-        <LoadingParts progress-id="population-loading" />
-      </div>
+        <div id="graph-container" class="populations-container-child">
+          <PopulationsGraph :populations="populations" />
+        </div>
+      </LoadableContainerParts>
 
       <!-- 人口グラフ エラー -->
       <div v-if="isPopulationsError" class="populations-container-child">
