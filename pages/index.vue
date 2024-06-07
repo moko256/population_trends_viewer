@@ -33,7 +33,6 @@
 
     <!-- 人口グラフ -->
     <div :class="$style.populationsContainer">
-      <!-- 人口グラフ 本体 -->
       <LoadableContainerParts
         :is-loading="isPopulationsLoading"
         :loading-message="$t(`populationsLoading`)"
@@ -41,6 +40,7 @@
         :error-message="$t('populationsLoadError')"
         @retry="loadPopulations"
       >
+        <!-- 人口グラフ 本体 -->
         <div
           :class="`${$style.populationsContainerChild} ${$style.graphContainer}`"
         >

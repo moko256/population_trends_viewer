@@ -173,6 +173,6 @@ class AlwaysFailPopulationsRepo extends PopulationsRepo {
 
 class ErrorExpected extends Error {
   constructor() {
-    super("Testing failure case. The test should be successful.");
+    super("Intentional error for testing.");
   }
 }

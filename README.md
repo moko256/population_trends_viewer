@@ -2,6 +2,14 @@
 
 A web application to show the population trends in Japan.
 
+## Setup
+
+1. Create `.env` file in the project root.
+2. Add `RESAS_API_KEY=your_own_key` to the `.env` file.
+3. Replace `your_own_key` with your RESAS key.
+
+## Commands
+
 ```bash
 # Make sure to install the dependencies
 npm install
@@ -62,6 +70,10 @@ Core:
 State management:
 
 - Pinia
+
+Testing:
+
+- vitest
 
 Chart:
 

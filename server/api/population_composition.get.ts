@@ -63,6 +63,7 @@ const querySchema = z.object({
     .pipe(z.array(z.coerce.number()).min(1)),
 });
 
+// Types from RESAS
 type ResasPopulationComposition = {
   message: string;
   result: {

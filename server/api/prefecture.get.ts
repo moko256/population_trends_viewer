@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
   return prefectures;
 });
 
+// Types from RESAS
 type ResasPrefectures = {
   message: string;
   result: {
