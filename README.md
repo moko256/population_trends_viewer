@@ -22,6 +22,16 @@ npm run build
 npm run preview
 ```
 
+```bash
+# Run test once
+npm run test
+```
+
+```bash
+# Run test continuously
+npm run test:watch
+```
+
 ## Configurations
 
 In `.env`:

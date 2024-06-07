@@ -6,7 +6,12 @@ export default defineNuxtConfig({
     resasApiKey: process.env.RESAS_API_KEY,
   },
 
-  modules: ["@nuxt/eslint", "@pinia/nuxt", "@nuxtjs/i18n"],
+  modules: [
+    "@nuxt/eslint",
+    "@pinia/nuxt",
+    "@nuxtjs/i18n",
+    "@nuxt/test-utils/module",
+  ],
 
   // https://nuxt.com/docs/guide/concepts/typescript
   typescript: {
