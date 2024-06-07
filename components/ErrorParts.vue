@@ -1,3 +1,4 @@
+<!-- エラーメッセージ + リトライボタン + 半透明背景 -->
 <template>
   <div :class="$style.errorBg">
     <p :class="$style.errorText">{{ errorMessageWithIcon }}</p>

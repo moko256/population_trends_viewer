@@ -1,3 +1,4 @@
+<!-- アプリ本体のページ -->
 <template>
   <div :class="$style.rootContainer">
     <!-- 県一覧 -->

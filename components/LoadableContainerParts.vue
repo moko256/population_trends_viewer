@@ -1,3 +1,4 @@
+<!-- 子要素の上に、エラー時とロード中に表示するパーツをまとめたコンポーネント -->
 <template>
   <div :aria-busy="isLoading" :aria-describedby="progressId">
     <slot></slot>

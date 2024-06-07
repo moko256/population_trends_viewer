@@ -1,3 +1,4 @@
+<!-- ページタイトル -->
 <template>
   <header :class="$style.header">
     <h1 :class="$style.title">{{ $t("pageTitle") }}</h1>

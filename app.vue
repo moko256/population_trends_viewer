@@ -1,3 +1,8 @@
+<!--
+  アプリ最上位
+
+  各ページはpages配下に配置
+-->
 <template>
   <NuxtPage />
 </template>
@@ -5,6 +10,7 @@
 <script setup lang="ts">
 import { provideRepo } from "./domain_client/repository/repos";
 
+// Provide repositories
 const config = useAppConfig();
 provideRepo(
   config.useMock,
@@ -13,6 +19,7 @@ provideRepo(
   config.mockDelaySec,
 );
 
+// Add strings to DOM
 const { locale, t } = useI18n();
 
 const pageTitle = computed(() => t("pageTitle"));

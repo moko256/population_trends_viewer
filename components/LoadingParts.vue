@@ -1,3 +1,4 @@
+<!-- ロード中プログレスバー + メッセージ + 半透明背景 -->
 <template>
   <div :class="$style.loadingBarBg">
     <p :class="$style.loadingText">{{ loadingMessage }}</p>

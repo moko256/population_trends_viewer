@@ -1,3 +1,4 @@
+<!-- 人口グラフを描画するコンポーネント -->
 <template>
   <Line :options="chartOptions" :data="chartData" />
 </template>

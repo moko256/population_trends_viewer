@@ -1,3 +1,4 @@
+<!-- 県一覧を表示するコンポーネント -->
 <template>
   <ul :class="$style.prefectureGridParent">
     <li

@@ -1,3 +1,4 @@
+<!-- メッセージ + 半透明背景 -->
 <template>
   <div :class="$style.coverBg">
     <p :class="$style.coverText">{{ coverText }}</p>
