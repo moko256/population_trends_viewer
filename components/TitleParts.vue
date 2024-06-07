@@ -7,14 +7,11 @@
 <style module>
 .title {
   font: 1em normal;
+  text-align: center;
 }
 
 .header {
   border-bottom: 2px solid gray;
   padding: 4px;
-
-  /* child placement */
-  display: flex;
-  justify-content: center;
 }
 </style>
